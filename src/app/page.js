@@ -60,7 +60,10 @@ export default function Home() {
   };
 
   const handleCopyCurl = () => {
-    const curlCommand = `curl -X POST http://grantx-link.vercel.app/api/shortenUrl \n-H "Content-Type: application/json" \n-d '{"originalUrl": "${originalUrl}", "apiKey": "${apiKey}"}'`;
+    const curlCommand = `curl -X POST http://grantx-link.vercel.app/api/shortenUrl \\
+  -H "Content-Type: application/json" \\
+  -d '{"originalUrl": "${originalUrl}", "apiKey": "${apiKey}"}' \\
+  -L`;
     navigator.clipboard.writeText(curlCommand).then(() => {
       setCopyStatus('Copied!');
       setTimeout(() => setCopyStatus('Copy'), 3000);
@@ -118,7 +121,7 @@ export default function Home() {
       >
         <div className="bg-neutral-900 p-6 rounded-lg max-w-lg w-full">
           <h2 className="text-2xl font-bold mb-4 text-white">cURL Command</h2>
-          <pre className="bg-neutral-800 p-3 rounded mb-4 whitespace-pre-wrap break-all text-white">{`curl -X POST http://grantx-link.vercel.app/api/createUrl \n-H "Content-Type: application/json" \n-d '{"originalUrl": "${originalUrl}", "apiKey": "${apiKey}"}'`}</pre>
+          <pre className="bg-neutral-800 p-3 rounded mb-4 whitespace-pre-wrap break-all text-white">{`curl -X POST http://grantx-link.vercel.app/api/createUrl \\n-H "Content-Type: application/json" \ \n-d '{"originalUrl": "${originalUrl}", "apiKey": "${apiKey}"}'\\n -L`}</pre>
           <button
             onClick={handleCopyCurl}
             className="bg-blue-500 text-white p-2 rounded hover:bg-blue-600 transition duration-200"
